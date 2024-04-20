@@ -14,25 +14,35 @@
         android:textSize="50dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="259dp" />
+        tools:layout_editor_absoluteY="183dp" />
 
-    <Button
-        android:id="@+id/button"
+    <EditText
+        android:id="@+id/editTextText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter username"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <EditText
+        android:id="@+id/editTextText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter password"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="368dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Login"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="385dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
-        android:text="Create Account"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="449dp" />
-
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="467dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

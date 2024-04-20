@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ShareOnGitHub</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter Password</string>
 </resources>
