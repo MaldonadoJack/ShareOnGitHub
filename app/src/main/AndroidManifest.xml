@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
 
-        <!-- LoginActivity -->
+<!--         LoginActivity -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +35,7 @@
 
         <!-- NewUserActivity -->
         <activity
-            android:name=".NewUserActivity"
+            android:name=".newuser"
             android:exported="true">
             <!-- Add intent filter if NewUserActivity is also a main entry point -->
         </activity>
