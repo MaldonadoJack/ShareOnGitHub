@@ -1,5 +1,20 @@
 <resources>
-    <string name="app_name">ShareOnGitHub</string>
-    <string name="login">Login</string>
-    <string name="enter_password">Enter Password</string>
+    <string name="app_name" translatable="false">ShareOnGitHub</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="enter_password" translatable="false">Enter Password</string>
+    <string name="gradex" translatable="false">GradeX</string>
+    <string name="Login" translatable="false">Login</string>
+    <string name="create_account" translatable="false">Create Account</string>
+    <string name="Course" translatable="false">Course</string>
+    <string name="health_button" translatable="false">health_button</string>
+    <string name="art_button" translatable="false">art_button</string>
+    <string name="math_button" translatable="false">math_button</string>
+    <string name="Username" translatable="false">Username</string>
+    <string name="Password" translatable="false">Password</string>
+    <string name="course" translatable="false">Course</string>
+    <string name="grade" translatable="false">Grade</string>
+    <string name="Semester" translatable="false">Semester</string>
+    <string name="enter_a_course_and_information" translatable="false">Enter a course and information</string>
+    <string name="enter_a_course" translatable="false">Enter a course</string>
+    <string name="enter_info" translatable="false">Enter info</string>
 </resources>
