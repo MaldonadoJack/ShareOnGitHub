@@ -1,26 +1,31 @@
 package com.example.shareongithub;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.shareongithub.database.GradeLogRepository;
+import com.example.shareongithub.database.entities.GradeLog;
 import com.example.shareongithub.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
-    private static final String TAG = "DAC_GRADEXLOG";
+    private GradeLogRepository repository;
+
+    public static final String TAG = "DAC_GRADEXLOG";
     String mCourse = "";
     double mGrade = 0.0;
     String mSemester = "";
+
+    //TODO: Add login information
+    int loggedInUserId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +33,49 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        repository = GradeLogRepository.getRepository(getApplication());
+
         binding.CourseView.setMovementMethod( new ScrollingMovementMethod());
-        
+        updateDisplay();
+
         binding.EnterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
+                insertGymLogRecord();
                 updateDisplay();
 
             }
         });
 
+        binding.CourseInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDisplay();
+            }
+        });
+
+    }
+
+    private void insertGymLogRecord() {
+        if (mCourse.isEmpty()) {
+            return;
+        }
+        GradeLog log = new GradeLog(mCourse , mGrade , mSemester , loggedInUserId);
+        repository.insertGradeLog(log);
     }
 
     private void updateDisplay() {
-        String currentInfo = binding.CourseView.getText().toString();
-        Log.d(TAG , "current info: " + currentInfo);
-        String newDisplay = String.format(Locale.US , "Course:%s%nGrade:%.2f%nSemester:%s%n=-=-=-=%n%s" , mCourse , mGrade , mSemester , currentInfo);
-        binding.CourseView.setText(newDisplay);
+        ArrayList<GradeLog> allLogs = repository.getAllLogs();
+        if (allLogs.isEmpty()) {
+            binding.CourseView.setText(R.string.nothing_to_show_enter_information);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (GradeLog log : allLogs) {
+            sb.append(log);
+        }
+        binding.CourseView.setText(sb.toString());
     }
 
     private void getInformationFromDisplay() {
