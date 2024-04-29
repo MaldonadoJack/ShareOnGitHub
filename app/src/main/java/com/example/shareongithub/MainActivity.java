@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     String mCourse = "";
     double mGrade = 0.0;
     String mSemester = "";
-
-    //TODO: Add login information
     int loggedInUserId = -1;
 
     @Override
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         repository = GradeLogRepository.getRepository(getApplication());
 
-        binding.CourseView.setMovementMethod( new ScrollingMovementMethod());
+        binding.CourseText.setMovementMethod( new ScrollingMovementMethod());
         updateDisplay();
 
         binding.EnterButton.setOnClickListener(new View.OnClickListener() {
@@ -69,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay() {
         ArrayList<GradeLog> allLogs = repository.getAllLogs();
         if (allLogs.isEmpty()) {
-            binding.CourseView.setText(R.string.nothing_to_show_enter_information);
+            binding.CourseText.setText(R.string.nothing_to_show_enter_information);
         }
         StringBuilder sb = new StringBuilder();
         for (GradeLog log : allLogs) {
             sb.append(log);
         }
-        binding.CourseView.setText(sb.toString());
+        binding.CourseText.setText(sb.toString());
     }
 
     private void getInformationFromDisplay() {

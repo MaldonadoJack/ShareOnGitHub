@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.shareongithub">
 
     <application
         android:allowBackup="true"
@@ -13,9 +13,9 @@
         android:theme="@style/Theme.ShareOnGitHub"
         tools:targetApi="31">
 
-        <!-- MainActivity -->
+        <!-- LoginActivity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
 
-<!--         LoginActivity -->
+        <!-- NewUserActivity -->
         <activity
-            android:name=".login"
+            android:name=".NewUserActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,12 +33,8 @@
             </intent-filter>
         </activity>
 
-        <!-- NewUserActivity -->
-        <activity
-            android:name=".newuser"
-            android:exported="true">
-            <!-- Add intent filter if NewUserActivity is also a main entry point -->
-        </activity>
+        <!-- MainActivity -->
+        <activity android:name=".MainActivity" />
 
     </application>
 
