@@ -40,15 +40,23 @@ public class LoginActivity extends AppCompatActivity
         String username = usernameEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        // Dummy check for demonstration (replace with actual database check)
-        if (username.equals("Tanmay1") && password.equals("Tanmay1")) {
-            // Successful login, navigate to MainActivity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        // Check if the entered username and password match the desired values for admin login
+        if (username.equals("admin2") && password.equals("admin2")) {
+            // Redirect to AdminActivity
+            Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
             startActivity(intent);
             finish(); // Finish LoginActivity to prevent going back
         } else {
-            // Failed login, show error message
-            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            // Dummy check for demonstration (replace with actual database check)
+            if (username.equals("Tanmay1") && password.equals("Tanmay1")) {
+                // Successful login for non-admin user, navigate to MainActivity
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Finish LoginActivity to prevent going back
+            } else {
+                // Failed login, show error message
+                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -81,7 +81,7 @@
         android:layout_width="318dp"
         android:layout_height="wrap_content"
         android:autofillHints="enter a grade"
-        android:hint="@string/enter_a_course"
+        android:hint="Enter Grade"
         android:inputType="textAutoComplete"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
