@@ -33,6 +33,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".AdminActivity" />
+
         <!-- MainActivity -->
         <activity android:name=".MainActivity" />
 
