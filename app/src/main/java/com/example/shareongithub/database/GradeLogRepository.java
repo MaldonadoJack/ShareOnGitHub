@@ -22,11 +22,11 @@ public class GradeLogRepository {
     private GradeLogRepository(Application application) {
         GradeLogDatabase db = GradeLogDatabase.getDatabase(application);
         this.gradeLogDAO = db.gradeLogDAO();
-        this.allLogs = (ArrayList<GradeLog>) this.gradeLogDAO.getAllRecords();
         this.userDAO = db.userDAO();
+        this.allLogs = (ArrayList<GradeLog>) this.gradeLogDAO.getAllRecords();
     }
 
-    public static GradeLogRepository getRepository(Application application) {
+    public static GradeLogRepository getRepository (Application application) {
         if (repository != null) {
             return repository;
         }
@@ -40,7 +40,7 @@ public class GradeLogRepository {
         );
         try {
             return future.get();
-        } catch(InterruptedException | ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             Log.d(MainActivity.TAG , "Problem getting GradeLogRepository, thread error.");
         }
         return null;
@@ -59,21 +59,19 @@ public class GradeLogRepository {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-            Log.i(MainActivity.TAG , "Problem when getting all GradeLogs in repository");
+            Log.i(MainActivity.TAG , "Problem when getting all GradeLogs in the repository");
         }
         return null;
     }
 
     public void insertGradeLog(GradeLog gradeLog) {
-        GradeLogDatabase.databaseWriteExecutor.execute(() ->
-        {
+        GradeLogDatabase.databaseWriteExecutor.execute(() -> {
             gradeLogDAO.insert(gradeLog);
         });
     }
 
-    public void insertUser(User... user) {
-        GradeLogDatabase.databaseWriteExecutor.execute(() ->
-        {
+    public void insertUser(User ... user) {
+        GradeLogDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
         });
     }

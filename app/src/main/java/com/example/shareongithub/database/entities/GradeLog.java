@@ -2,10 +2,12 @@ package com.example.shareongithub.database.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+
 import androidx.room.PrimaryKey;
 
 import com.example.shareongithub.database.GradeLogDatabase;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -30,11 +32,7 @@ public class GradeLog {
     @NonNull
     @Override
     public String toString() {
-        return course + '\n' +
-                "grade: " + grade + '\n' +
-                "semester: " + semester + '\n' +
-                "date: " + date.toString() + '\n' +
-                "=-=-=-=-=-=-=\n";
+        return course + '\n' + "grade: " + grade + '\n' + "semester: " + semester + '\n' + "date: " + date.toString() + '\n' + "=-=-=-=-=-=-=-=\n";
     }
 
     @Override
