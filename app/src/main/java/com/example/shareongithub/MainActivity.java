@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
         repository = GradeLogRepository.getRepository(getApplication());
 
-        binding.CourseText.setMovementMethod(new ScrollingMovementMethod());
+        binding.CourseTextView.setMovementMethod(new ScrollingMovementMethod());
         updateDisplay();
 
         binding.EnterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
-                insertGymLogRecord();
+                insertGradeLogRecord();
                 updateDisplay();
                 showLetterGradeDialog(); // Show the letter grade dialog
             }
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void insertGymLogRecord() {
+    private void insertGradeLogRecord() {
         if (mCourse.isEmpty()) {
             return;
         }
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
     private void updateDisplay() {
         ArrayList<GradeLog> allLogs = repository.getAllLogs();
         if (allLogs.isEmpty()) {
-            binding.CourseText.setText(R.string.nothing_to_show_enter_information);
+            binding.CourseTextView.setText(R.string.nothing_to_show_enter_information);
         }
         StringBuilder sb = new StringBuilder();
         for (GradeLog log : allLogs) {
             sb.append(log);
         }
-        binding.CourseText.setText(sb.toString());
+        binding.CourseTextView.setText(sb.toString());
     }
 
     private void getInformationFromDisplay() {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v) {
         getInformationFromDisplay();
         if (mGrade >= 0) {
-            insertGymLogRecord();
+            insertGradeLogRecord();
             updateDisplay();
             showLetterGradeDialog(); // Show the letter grade dialog
         } else {
