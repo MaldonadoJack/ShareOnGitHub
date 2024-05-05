@@ -18,4 +18,13 @@
     <string name="enter_a_course" translatable="false">Enter a course</string>
     <string name="enter_info" translatable="false">Enter info</string>
     <string name="nothing_to_show_enter_information">Nothing to show, enter information</string>
+    <string name="enter_semester">Enter Semester</string>
+    <string name="enter_grade">Enter Grade</string>
+    <string name="enter_course_information">Enter course information</string>
+    <string name="welcome_new_user">Welcome New User</string>
+    <string name="gradex1">GradeX</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account1">Create Account</string>
 </resources>
