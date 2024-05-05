@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.477" />
 
     <EditText
-        android:id="@+id/SemesterInput"
+        android:id="@+id/GradeInput"
         android:layout_width="279dp"
         android:layout_height="wrap_content"
         android:autofillHints="enter a semester"
@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.48" />
 
     <EditText
-        android:id="@+id/GradeInput"
+        android:id="@+id/SemesterInput"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:autofillHints="enter a grade"
