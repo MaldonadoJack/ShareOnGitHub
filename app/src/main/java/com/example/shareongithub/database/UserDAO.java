@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.shareongithub.database.entities.GradeLog;
 import com.example.shareongithub.database.entities.User;
 
 import java.util.List;
@@ -19,9 +18,12 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + GradeLogDatabase.USER_TABLE + " ORDER BY username")
+    @Query("SELECT * FROM " + UserDatabase.USER_TABLE + " ORDER BY username")
     List<User> getAllUsers();
 
-    @Query("DELETE FROM " + GradeLogDatabase.USER_TABLE)
+    @Query("SELECT * FROM " + UserDatabase.USER_TABLE + " WHERE username = :username")
+    User getUserByUsername(String username);
+
+    @Query("DELETE FROM " + UserDatabase.USER_TABLE)
     void deleteAll();
 }

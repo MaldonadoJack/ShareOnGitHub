@@ -1,9 +1,13 @@
 package com.example.shareongithub.database.entities;
 
+import android.content.Context;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.shareongithub.database.GradeLogDatabase;
+import com.example.shareongithub.database.UserDAO;
+import com.example.shareongithub.database.UserDatabase;
 
 import java.util.Objects;
 
@@ -19,6 +23,21 @@ public class User {
         this.username = username;
         this.password = password;
         isAdmin = false;
+    }
+
+    public static User getInstance(Context applicationContext) {
+        UserDAO userDAO = UserDatabase.getDatabase(applicationContext).userDAO();
+        return new User("", "");
+    }
+
+    public boolean deleteUser(Context context, String username) {
+        UserDAO userDAO = UserDatabase.getDatabase(context).userDAO();
+        User userToDelete = userDAO.getUserByUsername(username);
+        if (userToDelete != null) {
+            userDAO.delete(userToDelete);
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -65,4 +84,5 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
 }
