@@ -8,13 +8,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shareongithub.database.entities.User;
-import android.content.Context;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AdminActivity extends AppCompatActivity {
 
     private EditText usernameInput;
     private Button deleteUserButton;
     private User userRepository;
+    private ExecutorService executorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,18 @@ public class AdminActivity extends AppCompatActivity {
                 deleteUser();
             }
         });
+
+        // Initialize ExecutorService
+        executorService = Executors.newSingleThreadExecutor();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Shutdown the executor when the activity is destroyed
+        if (executorService != null) {
+            executorService.shutdown();
+        }
     }
 
     private void deleteUser() {
@@ -42,15 +57,26 @@ public class AdminActivity extends AppCompatActivity {
             return;
         }
 
-        // Delete the user from the database
-        boolean success = userRepository.deleteUser(getApplicationContext(), username);
-
-        if (success) {
-            Toast.makeText(this, "User deleted successfully", Toast.LENGTH_SHORT).show();
-            // Clear the username input field after successful deletion
-            usernameInput.setText("");
-        } else {
-            Toast.makeText(this, "Failed to delete user. User not found.", Toast.LENGTH_SHORT).show();
-        }
+        // Delete the user from the database asynchronously
+        userRepository.deleteUser(getApplicationContext(), username, executorService, new User.OnUserDeleteListener() {
+            @Override
+            public void onUserDelete(boolean success) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (success) {
+                            Toast.makeText(AdminActivity.this, "User deleted successfully", Toast.LENGTH_SHORT).show();
+                            // Clear the username input field after successful deletion
+                            usernameInput.setText("");
+                        } else {
+                            Toast.makeText(AdminActivity.this, "Failed to delete user. User not found.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                executorService.shutdown(); // Shutdown the executor when done
+            }
+        });
     }
+
+
 }

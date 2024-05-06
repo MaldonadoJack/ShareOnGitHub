@@ -47,5 +47,9 @@ public abstract class UserDatabase extends RoomDatabase {
         }
     };
 
+    public static ExecutorService getExecutorService() {
+        return databaseWriteExecutor;
+    }
+
     public abstract UserDAO userDAO();
 }

@@ -11,8 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shareongithub.database.entities.User;
+
 public class LoginActivity extends AppCompatActivity
-        implements TextView.OnEditorActionListener, View.OnClickListener{
+        implements TextView.OnEditorActionListener, View.OnClickListener {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -49,7 +51,9 @@ public class LoginActivity extends AppCompatActivity
         } else {
             // Dummy check for demonstration (replace with actual database check)
             if (username.equals("Tanmay1") && password.equals("Tanmay1")) {
-                // Successful login for non-admin user, navigate to MainActivity
+                // Successful login for non-admin user, update user information and navigate to MainActivity
+                User userRepository = User.getInstance(getApplicationContext());
+                userRepository.updateUser(username, password, getApplicationContext());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish(); // Finish LoginActivity to prevent going back

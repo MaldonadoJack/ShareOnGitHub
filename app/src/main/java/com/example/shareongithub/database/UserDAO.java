@@ -5,6 +5,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.shareongithub.database.entities.User;
 
@@ -18,6 +19,9 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
+    @Update
+    void update(User user);
+
     @Query("SELECT * FROM " + UserDatabase.USER_TABLE + " ORDER BY username")
     List<User> getAllUsers();
 
@@ -26,4 +30,5 @@ public interface UserDAO {
 
     @Query("DELETE FROM " + UserDatabase.USER_TABLE)
     void deleteAll();
+
 }
